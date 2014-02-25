@@ -39,7 +39,7 @@ public class Author extends User {
 	}
 
 	/**
-	 * After the user succefuly create a new TopLevel comment, this fuction will add the new top
+	 * After the user successfully create a new TopLevel comment, this fuction will add the new top
 	 * level comment to the topLevelList.
 	 * @param aNewComment
 	 */
