@@ -30,7 +30,7 @@
         android:layout_alignLeft="@+id/comment"
         android:layout_below="@+id/comment"
         android:layout_marginTop="38dp"
-        android:onclick="postComment"
+        android:onClick="postComment"
         android:text="@string/Create" />
 
 </RelativeLayout>
