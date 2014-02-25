@@ -10,7 +10,7 @@ import android.location.Location;
  */
 public abstract class User {
 	protected Location userLocation;// actual location of the user
-	protected String userName = null;
+	protected String userName = "Anonymous";
 	protected final static String ID = generateID();// ID to represent the user.
 
 	/**
