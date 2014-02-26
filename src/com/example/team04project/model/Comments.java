@@ -14,11 +14,11 @@ public abstract class Comments {
 	protected String textComment;
 	protected PictureModel aPicture;
 
-	public Comments(Location aLocation, String textComment) {
+	public Comments(Location aLocation, String textComment, User aUser) {
 
 		this.aLocation = aLocation;
 		this.textComment = textComment;
-
+		this.aUser=aUser;
 	}
 
 	public abstract String getComment();
@@ -28,5 +28,15 @@ public abstract class Comments {
 	public abstract String editComment();
 
 	public abstract Location getLocation();
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Comments [aUser=" + aUser + ", aLocation=" + aLocation
+				+ ", textComment=" + textComment + ", aPicture=" + aPicture
+				+ "]";
+	}
 
 }

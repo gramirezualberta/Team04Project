@@ -4,9 +4,12 @@ import android.location.Location;
 
 public class Reply extends Comments {
 
-	public Reply(Location aLocation, String textComment) {
-		super(aLocation, textComment);
-		// TODO Auto-generated constructor stub
+	private String topLevelID; 
+
+	public Reply(Location aLocation, String textComment, User aUser, String topLevelID) {
+		super(aLocation, textComment, aUser);
+		
+		this.topLevelID=topLevelID;
 	}
 
 	@Override

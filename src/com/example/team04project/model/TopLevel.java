@@ -1,12 +1,27 @@
 package com.example.team04project.model;
 
+import java.util.UUID;
+
 import android.location.Location;
+
 
 public class TopLevel extends Comments {
 
-	public TopLevel(Location aLocation, String textComment) {
-		super(aLocation, textComment);
-		// TODO Auto-generated constructor stub
+	private String tittle;
+	private String topLevelID;
+
+	public TopLevel(Location aLocation, String textComment, User aUser,
+			String tittle) {
+		super(aLocation, textComment, aUser);
+		
+		this.tittle=tittle;
+		this.topLevelID=generateID();
+
+	}
+	
+	private static String generateID()
+	{
+		return UUID.randomUUID().toString();
 	}
 
 	@Override
@@ -32,5 +47,18 @@ public class TopLevel extends Comments {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TopLevel [tittle=" + tittle + ", topLevelID=" + topLevelID
+				+ ", aUser=" + aUser + ", aLocation=" + aLocation
+				+ ", textComment=" + textComment + ", aPicture=" + aPicture
+				+ "]";
+	}
+	
+	
 
 }
