@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.example.team04project.model.User;
 import com.google.gson.Gson;
 
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class Options extends Activity {
 		try{
 			BufferedReader br = new BufferedReader (new FileReader(saveFile));
 			User u = gson.fromJson(br, User.class);
-			username = u.getUser();
+			//username = u.getUser();
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -56,10 +57,10 @@ public class Options extends Activity {
 		ll.addView(btnUser);
 		//TO DO create on click for the button and save the user name
 		//Saving the username class to a txt file in internal storage
-		String json = gson.toJson(u);//See what this error is
+		//String json = gson.toJson(u);//See what this error is
 		try {
 			FileWriter writer = new FileWriter(saveFile);
-			writer.write(json);
+			//writer.write(json);
 			writer.close();
 	 
 		} catch (IOException e) {
