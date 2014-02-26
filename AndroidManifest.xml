@@ -29,14 +29,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.team04project.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name="com.example.team04project.Settings"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
             android:name="com.example.team04project.Options"
             android:label="@string/title_activity_options" >
         </activity>

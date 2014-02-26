@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -12,9 +13,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.team04project.model.Comments;
 
 
-public class Picture
+//this is an Activity or model?
+public class Picture extends Activity
 {
 	
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
