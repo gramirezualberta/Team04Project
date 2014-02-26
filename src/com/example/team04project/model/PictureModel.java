@@ -2,13 +2,13 @@ package com.example.team04project.model;
 
 import android.graphics.Bitmap;
 
-public class PictureForComment {
+public class PictureModel {
 	
 	private Bitmap picture;
 	private String userID;
 	private String commentID;
 	
-	public PictureForComment(Bitmap picture, String userID, String commentID)
+	public PictureModel(Bitmap picture, String userID, String commentID)
 	{
 		this.picture=picture;
 		this.userID=userID;

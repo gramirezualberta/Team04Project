@@ -12,7 +12,7 @@ public abstract class Comments {
 	protected User aUser;
 	protected Location aLocation;
 	protected String textComment;
-	protected PictureForComment aPicture;
+	protected PictureModel aPicture;
 
 	public Comments(Location aLocation, String textComment) {
 
