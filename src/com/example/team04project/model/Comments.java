@@ -1,5 +1,6 @@
 package com.example.team04project.model;
 
+import android.graphics.Bitmap;
 import android.location.Location;
 
 /**
@@ -9,34 +10,79 @@ import android.location.Location;
  */
 public abstract class Comments {
 
-	protected User aUser;
+	protected Author aUser;
 	protected Location aLocation;
 	protected String textComment;
-	protected PictureModel aPicture;
+	protected Bitmap aPicture;
+	protected boolean hasPicture = false;
 
-	public Comments(Location aLocation, String textComment, User aUser) {
+	public Comments(Location aLocation, String textComment, Author aUser, Bitmap aPicture) {
+
+		this.aLocation = aLocation;
+		this.textComment = textComment;
+		this.aUser=aUser;
+		this.hasPicture=true;
+		this.aPicture=aPicture;
+	}
+	
+	public Comments(Location aLocation, String textComment, Author aUser) {
 
 		this.aLocation = aLocation;
 		this.textComment = textComment;
 		this.aUser=aUser;
 	}
 
-	public abstract String getComment();
-
-	public abstract User getUser();
-
-	public abstract String editComment();
-
-	public abstract Location getLocation();
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the aUser
 	 */
-	@Override
-	public String toString() {
-		return "Comments [aUser=" + aUser + ", aLocation=" + aLocation
-				+ ", textComment=" + textComment + ", aPicture=" + aPicture
-				+ "]";
+	public Author getaUser() {
+		return aUser;
 	}
+
+	/**
+	 * @return the aLocation
+	 */
+	public Location getaLocation() {
+		return aLocation;
+	}
+
+	/**
+	 * @param aLocation the aLocation to set
+	 */
+	public void setaLocation(Location aLocation) {
+		this.aLocation = aLocation;
+	}
+
+	/**
+	 * @return the textComment
+	 */
+	public String getTextComment() {
+		return textComment;
+	}
+
+	/**
+	 * @param textComment the textComment to set
+	 */
+	public void setTextComment(String textComment) {
+		this.textComment = textComment;
+	}
+
+	/**
+	 * @return the aPicture
+	 */
+	public Bitmap getaPicture() {
+		if(hasPicture)
+			return null;
+		return aPicture;
+			
+	}
+
+	/**
+	 * @param aPicture the aPicture to set
+	 */
+	public void setaPicture(Bitmap aPicture) {
+		this.aPicture = aPicture;
+	}
+	
 
 }

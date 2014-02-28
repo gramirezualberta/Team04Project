@@ -1,64 +1,77 @@
 package com.example.team04project.model;
 
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
+import android.graphics.Bitmap;
 import android.location.Location;
-
 
 public class TopLevel extends Comments {
 
 	private String tittle;
-	private String topLevelID;
+	private List<Reply> replies;
 
-	public TopLevel(Location aLocation, String textComment, User aUser,
+	public TopLevel(Location aLocation, String textComment, Author aUser,
+			Bitmap aPicture, String tittle) {
+		super(aLocation, textComment, aUser, aPicture);
+		this.tittle = tittle;
+		this.replies = new ArrayList<Reply>();
+	}
+
+	public TopLevel(Location aLocation, String textComment, Author aUser,
 			String tittle) {
 		super(aLocation, textComment, aUser);
-		
-		this.tittle=tittle;
-		this.topLevelID=generateID();
 
-	}
-	
-	private static String generateID()
-	{
-		return UUID.randomUUID().toString();
+		this.tittle = tittle;
+		this.replies = new ArrayList<Reply>();
 	}
 
-	@Override
-	public String getComment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User getUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String editComment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Location getLocation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the tittle
 	 */
-	@Override
-	public String toString() {
-		return "TopLevel [tittle=" + tittle + ", topLevelID=" + topLevelID
-				+ ", aUser=" + aUser + ", aLocation=" + aLocation
-				+ ", textComment=" + textComment + ", aPicture=" + aPicture
-				+ "]";
+	public String getTittle() {
+		return tittle;
 	}
-	
-	
+
+	/**
+	 * @param tittle
+	 *            the tittle to set
+	 */
+	public void setTittle(String tittle) {
+		this.tittle = tittle;
+	}
+
+	/**
+	 * @param aReply
+	 * @return
+	 * @see java.util.List#add(java.lang.Object)
+	 */
+	public boolean add(Reply aReply) {
+		return replies.add(aReply);
+	}
+
+	/**
+	 * 
+	 * @see java.util.List#clear()
+	 */
+	public void clear() {
+		replies.clear();
+	}
+
+	/**
+	 * @param i
+	 * @return
+	 * @see java.util.List#remove(int)
+	 */
+	public Reply remove(int i) {
+		return replies.remove(i);
+	}
+
+	/**
+	 * @return the replies
+	 */
+	public List<Reply> getReplies() {
+		return replies;
+	}
 
 }

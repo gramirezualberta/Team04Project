@@ -8,21 +8,12 @@ import android.location.Location;
 
 public class Reader extends User
 {
-	
-	private ArrayList<Comments> favouriteList;
 
-	public Reader(Location userLocation) {
-		super(userLocation);
+	public Reader(Location aLocation) {
+		super(aLocation);
+		// TODO Auto-generated constructor stub
 	}
 	
-	public void addFavouriteList (Comments aComment)
-	{
-		favouriteList.add(aComment);
-	}
-	
-	public ArrayList<Comments> getFavouriteList()
-	{
-		return favouriteList;
-	}
+
 
 }

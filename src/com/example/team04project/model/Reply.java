@@ -1,39 +1,20 @@
 package com.example.team04project.model;
 
+import android.graphics.Bitmap;
 import android.location.Location;
 
-public class Reply extends Comments {
+public class Reply extends Comments 
+{
 
-	private String topLevelID; 
-
-	public Reply(Location aLocation, String textComment, User aUser, String topLevelID) {
+	public Reply(Location aLocation, String textComment, Author aUser,
+			Bitmap aPicture) {
+		super(aLocation, textComment, aUser, aPicture);
+		// TODO Auto-generated constructor stub
+	}
+	public Reply(Location aLocation, String textComment, Author aUser) {
 		super(aLocation, textComment, aUser);
-		
-		this.topLevelID=topLevelID;
+		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public String getComment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User getUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String editComment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Location getLocation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

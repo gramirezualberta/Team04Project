@@ -1,6 +1,7 @@
 package com.example.team04project.model;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import android.location.Location;
 
@@ -10,49 +11,40 @@ import android.location.Location;
  */
 public class Author extends User {
 
-	private Comments aNewComment;
-	// save all the top level comment create by the user
-	private ArrayList<TopLevel> topLevelList;
+	private String userName;
+	private final String ID;
 
-	public Author(Location userLocation, String userName, Comments aNewComment) {
-		super(userLocation, userName);
+	public Author(Location aLocation, String userName) {
+		super(aLocation);
 
-		this.aNewComment = aNewComment;
-		createTopLevel((TopLevel) aNewComment);
+		this.userName = userName;
+		ID = generateID();
+	}
+
+	private String generateID() {
+		return UUID.randomUUID().toString();
 	}
 
 	/**
-	 * @return the aNewComment
+	 * @return the userName
 	 */
-	public Comments getaNewComment() {
-		return aNewComment;
+	public String getUserName() {
+		return userName;
 	}
 
 	/**
-	 * @return the topLevelList and return null is the ArrayList is empty
+	 * @param userName
+	 *            the userName to set
 	 */
-	public ArrayList<TopLevel> getTopLevelList() {
-		if (topLevelList.isEmpty()) {
-			topLevelList = null;
-		}
-		return topLevelList;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**
-	 * After the user successfully create a new TopLevel comment, this fuction will add the new top
-	 * level comment to the topLevelList.
-	 * @param aNewComment
+	 * @return the iD
 	 */
-	public void createTopLevel(TopLevel aNewComment) {
-		addTopLevelCommentToList(aNewComment);
-	}
-
-	/**
-	 * Add a new topLevel Comment to topLevelList
-	 * @param aNewTopLevel
-	 */
-	private void addTopLevelCommentToList(TopLevel aNewTopLevel) {
-		topLevelList.add(aNewTopLevel);
+	public String getID() {
+		return ID;
 	}
 
 }
