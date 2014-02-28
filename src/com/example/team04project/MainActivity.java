@@ -1,46 +1,40 @@
 package com.example.team04project;
 
-import java.util.ArrayList;
+import com.example.team04project.model.Comments;
+import com.example.team04project.model.Reader;
+import com.example.team04project.model.User;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-
-import com.example.team04project.model.SpinnerNavItem;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
 	private ActionBar actionBar;
-	// Title navigation Spinner data
-	private ArrayList<SpinnerNavItem> navSpinner;
-	// Navigation adapter
-	private TitleNavigationAdapter adapter;
-
+	
+	private User newUser;
+	private GPSLocation location;
+	private Comments comment;
+	private ListView commentsList;
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		/* inizialition of user and location; this is for test porpose
+		 * Feature to develop: read if the user is first time in the app
+		 * or is a come back user.
+		 */
+		location=new GPSLocation(MainActivity.this);
+		newUser=new Reader(location.getLocation());
+		
 		actionBar = getActionBar();
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-
-		navSpinner = new ArrayList<SpinnerNavItem>();
-		navSpinner.add(new SpinnerNavItem("Local"));
-		navSpinner.add(new SpinnerNavItem("My Places"));
-		navSpinner.add(new SpinnerNavItem("Checkins"));
-		navSpinner.add(new SpinnerNavItem("Latitude"));
-
-		// title drop down adapter
-		adapter = new TitleNavigationAdapter(getApplicationContext(),
-				navSpinner);
-
-		// assigning the spinner navigation
-		actionBar.setListNavigationCallbacks(adapter, this);
-
+		
 	}
 
 	@Override
