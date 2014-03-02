@@ -11,15 +11,15 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class GPSLocation extends Service implements LocationListener {
-	
+
 	private final Context aContext;
-	
-	private boolean isGPSEnabled= false;
-	private boolean isNetworkEnabled= false;
+
+	private boolean isGPSEnabled = false;
+	private boolean isNetworkEnabled = false;
 	private boolean canGetLocation = false;
-	
+
 	private Location aLocation;
-	
+
 	// Declaring a Location Manager
 	protected LocationManager locationManager;
 
@@ -51,9 +51,7 @@ public class GPSLocation extends Service implements LocationListener {
 				this.canGetLocation = true;
 				if (isNetworkEnabled) {
 					locationManager.requestLocationUpdates(
-							LocationManager.NETWORK_PROVIDER,
-							0,
-							0, this);
+							LocationManager.NETWORK_PROVIDER, 0, 0, this);
 					Log.d("Network", "Network");
 					if (locationManager != null) {
 						aLocation = locationManager
@@ -68,9 +66,7 @@ public class GPSLocation extends Service implements LocationListener {
 				if (isGPSEnabled) {
 					if (aLocation == null) {
 						locationManager.requestLocationUpdates(
-								LocationManager.GPS_PROVIDER,
-								0,
-								0, this);
+								LocationManager.GPS_PROVIDER, 0, 0, this);
 						Log.d("GPS Enabled", "GPS Enabled");
 						if (locationManager != null) {
 							aLocation = locationManager
@@ -90,42 +86,43 @@ public class GPSLocation extends Service implements LocationListener {
 
 		return aLocation;
 	}
-	
+
 	/**
 	 * Stop using GPS listener
 	 * */
-	public void stopUsingGPS(){
-		if(locationManager != null){
+	public void stopUsingGPS() {
+		if (locationManager != null) {
 			locationManager.removeUpdates(GPSLocation.this);
-		}		
+		}
 	}
-	
+
 	/**
 	 * get latitude
 	 * */
-	public double getLatitude(){
-		if(aLocation != null){
+	public double getLatitude() {
+		if (aLocation != null) {
 			latitude = aLocation.getLatitude();
 		}
-		
+
 		// return latitude
 		return latitude;
 	}
-	
+
 	/**
 	 * get longitude
 	 * */
-	public double getLongitude(){
-		if(aLocation != null){
+	public double getLongitude() {
+		if (aLocation != null) {
 			longitude = aLocation.getLongitude();
 		}
-		
+
 		// return longitude
 		return longitude;
 	}
-	
+
 	/**
 	 * check if GPS/wifi is enabled
+	 * 
 	 * @return boolean
 	 * */
 	public boolean canGetLocation() {
