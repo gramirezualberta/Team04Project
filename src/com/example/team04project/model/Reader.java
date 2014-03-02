@@ -8,10 +8,13 @@ import android.location.Location;
 
 public class Reader extends User
 {
+	
+	private FavouritesModelList favouritesList;
 
-	public Reader(Location aLocation) {
+	public Reader(Location aLocation, FavouritesModelList favouritesList) {
 		super(aLocation);
-		// TODO Auto-generated constructor stub
+		this.favouritesList = favouritesList;
+		
 	}
 	
 

@@ -14,22 +14,13 @@ public abstract class Comments {
 	protected Location aLocation;
 	protected String textComment;
 	protected Bitmap aPicture;
-	protected boolean hasPicture = false;
 
-	public Comments(Location aLocation, String textComment, Author aUser, Bitmap aPicture) {
+	public Comments(String textComment, Author aUser, Bitmap aPicture) {
 
-		this.aLocation = aLocation;
 		this.textComment = textComment;
 		this.aUser=aUser;
-		this.hasPicture=true;
+		this.aLocation = aUser.getUserLocation();
 		this.aPicture=aPicture;
-	}
-	
-	public Comments(Location aLocation, String textComment, Author aUser) {
-
-		this.aLocation = aLocation;
-		this.textComment = textComment;
-		this.aUser=aUser;
 	}
 
 	/**
@@ -50,7 +41,7 @@ public abstract class Comments {
 	 * @param aLocation the aLocation to set
 	 */
 	public void setaLocation(Location aLocation) {
-		this.aLocation = aLocation;
+		this.aLocation=aLocation;
 	}
 
 	/**
@@ -71,8 +62,6 @@ public abstract class Comments {
 	 * @return the aPicture
 	 */
 	public Bitmap getaPicture() {
-		if(hasPicture)
-			return null;
 		return aPicture;
 			
 	}

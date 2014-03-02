@@ -11,17 +11,9 @@ public class TopLevel extends Comments {
 	private String tittle;
 	private List<Reply> replies;
 
-	public TopLevel(Location aLocation, String textComment, Author aUser,
+	public TopLevel(String textComment, Author aUser,
 			Bitmap aPicture, String tittle) {
-		super(aLocation, textComment, aUser, aPicture);
-		this.tittle = tittle;
-		this.replies = new ArrayList<Reply>();
-	}
-
-	public TopLevel(Location aLocation, String textComment, Author aUser,
-			String tittle) {
-		super(aLocation, textComment, aUser);
-
+		super(textComment, aUser, aPicture);
 		this.tittle = tittle;
 		this.replies = new ArrayList<Reply>();
 	}

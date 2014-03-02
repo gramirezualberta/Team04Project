@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.team04project.model.Author;
+import com.example.team04project.model.Reader;
 import com.example.team04project.model.TopLevel;
 
 public class MainActivity extends Activity {
 
 	GPSLocation userLocation;
 	Author author;
+	Reader reader;
 	TopLevel comment;
 	Internet internet;
-
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +30,6 @@ public class MainActivity extends Activity {
 		internet = new Internet(this);
 		userLocation = new GPSLocation(MainActivity.this);
 		author = new Author(userLocation.getLocation(), "guillermo");
-		comment = new TopLevel(userLocation.getLocation(), "dasdasd", author,
-				"hola");
 
 	}
 
