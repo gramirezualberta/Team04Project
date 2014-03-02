@@ -10,5 +10,5 @@ public class Reply extends Comments
 			Bitmap aPicture) {
 		super(textComment, aUser, aPicture);
 	}
-
+	
 }
