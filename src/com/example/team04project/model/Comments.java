@@ -35,8 +35,8 @@ public abstract class Comments {
 	/**
 	 * @return the aUser
 	 */
-	public Author getaUser() {
-		return aUser;
+	public String getaUser() {
+		return aUser.getUserName();
 	}
 
 	/**

@@ -61,13 +61,17 @@ public class MainActivity extends Activity {
 		boolean isOn = internet.isConnectedToInternet();
 		String msn = "Title : " + comment.getTittle() +
 				"\n text : "+ comment.getTextComment() +
-				"\n user : "+ comment.getaUser().getUserName()+
+				"\n user : "+ comment.getaUser()+
 				"\n location : lat - " + lat
 				+ "\n lon - "+lon
 				+"\n connected? " + isOn;
 		Toast.makeText(this,msn, Toast.LENGTH_SHORT).show();
 	}
 
+	public void testl(View view)
+	{
+		Toast.makeText(this, "LONGGGG", Toast.LENGTH_LONG).show();
+	}
 	public void creatNewComment() {
 		Intent intent = new Intent(MainActivity.this,
 				CreateCommentActivity.class);
