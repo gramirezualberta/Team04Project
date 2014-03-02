@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
 		internet = new Internet(this);
 		userLocation = new GPSLocation(MainActivity.this);
 		author = new Author(userLocation.getLocation(), "guillermo");
+		comment = new TopLevel("hola", author, null , "tittle");
 
 	}
 
