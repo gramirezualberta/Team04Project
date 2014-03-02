@@ -6,23 +6,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.team04project.model.Author;
+import com.example.team04project.model.TopLevel;
 
 public class MainActivity extends Activity {
-	
+
 	GPSLocation userLocation;
 	Author author;
-	
+	TopLevel comment;
+	Internet internet;
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
+		internet = new Internet(this);
 		userLocation = new GPSLocation(MainActivity.this);
 		author = new Author(userLocation.getLocation(), "guillermo");
-		
+		comment = new TopLevel(userLocation.getLocation(), "dasdasd", author,
+				"hola");
+
 	}
 
 	@Override
@@ -31,31 +39,46 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main_action, menu);
 		return true;
 	}
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.creat_comment :
+		case R.id.creat_comment:
 			creatNewComment();
 			return true;
-		case R.id.setting :
+		case R.id.setting:
 			openSetting();
 			return true;
-			default:
-				return super.onOptionsItemSelected(item);
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		
+
 	}
-		public void creatNewComment()
-		{
-			Intent intent =new Intent(MainActivity.this , CreateCommentActivity.class);
-			startActivity(intent);
-			
-		}
-		public void openSetting()
-		{
-			Intent intent =new Intent(MainActivity.this , SettingsActivity.class);
-			startActivity(intent);
-			
-			
-		}
+
+	public void testB(View view)
+	{
+		double lat= comment.getaLocation().getLatitude();
+		double lon = comment.getaLocation().getLongitude();
+		boolean isOn = internet.isConnectedToInternet();
+		String msn = "Title : " + comment.getTittle() +
+				"\n text : "+ comment.getTextComment() +
+				"\n user : "+ comment.getaUser().getUserName()+
+				"\n location : lat - " + lat
+				+ "\n lon - "+lon
+				+"\n connected? " + isOn;
+		Toast.makeText(this,msn, Toast.LENGTH_SHORT).show();
+	}
+
+	public void creatNewComment() {
+		Intent intent = new Intent(MainActivity.this,
+				CreateCommentActivity.class);
+		startActivity(intent);
+
+	}
+
+	public void openSetting() {
+		Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+		startActivity(intent);
+
+	}
 
 }
