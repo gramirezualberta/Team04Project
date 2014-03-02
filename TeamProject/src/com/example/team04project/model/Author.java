@@ -1,6 +1,5 @@
 package com.example.team04project.model;
 
-import java.util.List;
 import java.util.UUID;
 
 import android.location.Location;

@@ -1,7 +1,5 @@
 package com.example.team04project.model;
 
-import java.util.ArrayList;
-
 import android.location.Location;
 
 
