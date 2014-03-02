@@ -10,5 +10,8 @@
     <string name="Create">Create</string>
     <string name="enterComment">Write Comment</string>
     <string name="title_activity_browse_comment">BrowseComment</string>
+    <string name="favourites">favourites</string>
+    <string name="setting">setting</string>
+    <string name="search">search</string>
 
 </resources>

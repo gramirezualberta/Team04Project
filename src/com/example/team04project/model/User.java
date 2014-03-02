@@ -15,7 +15,13 @@ public abstract class User {
 	public User(Location aLocation)
 	{
 		this.userLocation=aLocation;
-		this.userLocationList.addLocationToList(aLocation);
+	}
+
+	/**
+	 * @return the userLocation
+	 */
+	public Location getUserLocation() {
+		return userLocation;
 	}
 
 }

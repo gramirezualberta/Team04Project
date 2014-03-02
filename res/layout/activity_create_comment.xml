@@ -6,31 +6,37 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".CreateComment" >
-
-    <EditText
-        android:id="@+id/comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="43dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:hint="@string/enterComment" >
-
-        <requestFocus />
-    </EditText>
+    tools:context=".CreateCommentActivity" >
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/comment"
-        android:layout_below="@+id/comment"
-        android:layout_marginTop="38dp"
-        android:onClick="postComment"
-        android:text="@string/Create" />
+        android:layout_alignRight="@+id/comment_title"
+        android:layout_below="@+id/comment_text"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="152dp"
+        android:text="Button" />
+
+    <EditText
+        android:id="@+id/comment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:ems="10" 
+        android:hint="tittle"/>
+
+    <EditText
+        android:id="@+id/comment_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/comment_title"
+        android:layout_below="@+id/comment_title"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
 </RelativeLayout>

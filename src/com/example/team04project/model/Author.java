@@ -18,7 +18,7 @@ public class Author extends User {
 		super(aLocation);
 
 		this.userName = userName;
-		ID = generateID();
+		this.ID = generateID();
 	}
 
 	private String generateID() {
