@@ -4,17 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
 
 public class TopLevel extends Comments {
 
 	private String tittle;
-	private List<Reply> replies;
+	@SuppressWarnings("unused")
+	private List<Reply> replyList;
 
-	public TopLevel(String textComment, Author aUser,
-			Bitmap aPicture, String tittle) {
+	public TopLevel(String textComment, Author aUser, Bitmap aPicture,
+			String tittle) {
 		super(textComment, aUser, aPicture);
 		this.tittle = tittle;
-		this.replies = new ArrayList<Reply>();
+		replyList = new ArrayList<Reply>();
+	}
+
+	private TopLevel(Parcel source) {
+		Log.e("Parcealbe",
+				"ParcelData(Parcel source): time to put back parcel data");
+		textComment = source.readString();
+		aUser = (Author) source.readValue(getClass().getClassLoader());
+		aPicture = (Bitmap) source.readValue(getClass().getClassLoader());
+		tittle = source.readString();
 	}
 
 	/**
@@ -30,39 +43,46 @@ public class TopLevel extends Comments {
 	 */
 	public void setTittle(String tittle) {
 		this.tittle = tittle;
+	}	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getTittle() +
+				"\n" + getTextComment() +
+				"\n" + getUserName();
 	}
 
-	/**
-	 * @param aReply
-	 * @return
-	 * @see java.util.List#add(java.lang.Object)
-	 */
-	public boolean add(Reply aReply) {
-		return replies.add(aReply);
+	//testing parceable interface. hopelly it works.
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	/**
-	 * 
-	 * @see java.util.List#clear()
-	 */
-	public void clear() {
-		replies.clear();
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		Log.e("parceable", "" + flags);
+		dest.writeString(textComment);
+		dest.writeValue(aUser);
+		dest.writeValue(aPicture);
+		dest.writeString(tittle);
 	}
 
-	/**
-	 * @param i
-	 * @return
-	 * @see java.util.List#remove(int)
-	 */
-	public Reply remove(int i) {
-		return replies.remove(i);
-	}
+	public static final Parcelable.Creator<TopLevel> CREATOR = new Creator<TopLevel>() {
 
-	/**
-	 * @return the replies
-	 */
-	public List<Reply> getReplies() {
-		return replies;
-	}
+		@Override
+		public TopLevel[] newArray(int size) {
+			// TODO Auto-generated method stub
+			return new TopLevel [size];
+		}
+
+		@Override
+		public TopLevel createFromParcel(Parcel source) {
+			return new TopLevel(source);
+		}
+	};
 
 }

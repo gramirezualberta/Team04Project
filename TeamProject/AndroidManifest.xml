@@ -56,6 +56,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.team04project.MainActivity" />
         </activity>
+        <activity
+            android:name="com.example.team04project.ShowCommentActivity"
+            android:label="@string/title_activity_show_comment"
+            android:parentActivityName="com.example.team04project.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.team04project.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

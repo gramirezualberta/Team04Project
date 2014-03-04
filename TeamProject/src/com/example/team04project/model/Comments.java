@@ -2,16 +2,18 @@ package com.example.team04project.model;
 
 import android.graphics.Bitmap;
 import android.location.Location;
+import android.os.Parcelable;
 
 /**
  * This class gather al the information need it for a comment.
  * 
  * 
  */
-public abstract class Comments {
+public abstract class Comments implements Parcelable{
+
 
 	protected Author aUser;
-	protected Location aLocation;
+	protected Location aLocation;//not sure if comment store userLocatin.
 	protected String textComment;
 	protected Bitmap aPicture;
 
@@ -19,14 +21,17 @@ public abstract class Comments {
 
 		this.textComment = textComment;
 		this.aUser=aUser;
-		this.aLocation = aUser.getUserLocation();
 		this.aPicture=aPicture;
+	}
+	public Comments()
+	{
+		
 	}
 
 	/**
 	 * @return the aUser
 	 */
-	public String getaUser() {
+	public String getUserName() {
 		return aUser.getUserName();
 	}
 
@@ -57,21 +62,23 @@ public abstract class Comments {
 	public void setTextComment(String textComment) {
 		this.textComment = textComment;
 	}
-
 	/**
 	 * @return the aPicture
 	 */
 	public Bitmap getaPicture() {
 		return aPicture;
-			
 	}
-
 	/**
 	 * @param aPicture the aPicture to set
 	 */
 	public void setaPicture(Bitmap aPicture) {
 		this.aPicture = aPicture;
 	}
-	
+	/**
+	 * @param aUser the aUser to set
+	 */
+	public void setUsername(String username) {
+		this.aUser.setUserName(username);
+	}	
 
 }

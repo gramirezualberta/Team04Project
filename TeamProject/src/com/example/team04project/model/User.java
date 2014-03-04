@@ -1,27 +1,23 @@
 package com.example.team04project.model;
 
 import android.location.Location;
+import android.os.Parcelable;
 
 
 /**
  * @author Guillermo Ramirez
  * 
  */
-public abstract class User {
+public abstract class User implements Parcelable{
 
 	protected Location userLocation;
-	protected LocationModelList userLocationList;
-	
-	public User(Location aLocation)
+
+	public User(Location userLocation)
 	{
-		this.userLocation=aLocation;
+		this.userLocation = userLocation;
 	}
-
-	/**
-	 * @return the userLocation
-	 */
-	public Location getUserLocation() {
-		return userLocation;
+	public User()
+	{
+		
 	}
-
 }
