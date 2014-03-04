@@ -1,5 +1,7 @@
 package com.example.team04project.model;
 
+import java.util.List;
+
 import android.location.Location;
 
 
@@ -7,14 +9,16 @@ import android.location.Location;
  * @author Guillermo Ramirez
  * 
  */
-public abstract class User {
+public abstract class User{
 
 	protected Location userLocation;
-	protected LocationModelList userLocationList;
+	protected LocationModelList locationList;
 	
 	public User(Location aLocation)
 	{
 		this.userLocation=aLocation;
+		locationList = new LocationModelList();
+		locationList.addLocationToList(aLocation);
 	}
 
 	/**
@@ -22,6 +26,16 @@ public abstract class User {
 	 */
 	public Location getUserLocation() {
 		return userLocation;
+	}
+
+	public List<Location> getLocationHistory()
+	{
+		return locationList.getList();
+	}
+	
+	public void deleteLocationHistory()
+	{
+		locationList.clear();
 	}
 
 }

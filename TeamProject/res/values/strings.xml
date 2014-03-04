@@ -13,5 +13,6 @@
     <string name="favourites">favourites</string>
     <string name="setting">setting</string>
     <string name="search">search</string>
+    <string name="title_activity_show_comment">ShowCommentActivity</string>
 
 </resources>
