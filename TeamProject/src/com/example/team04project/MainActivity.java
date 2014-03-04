@@ -50,6 +50,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
 		commentList = new ArrayList<Comments>();
 		commentListView = (ListView) findViewById(R.id.commentListView);
+		
+		//testing parceaable
+		author = new Author(userLocation.getLocation(), "guillermo");
+		comment = new TopLevel("haola", author, null, "tittle");
+		commentList.add(comment);
 
 		/*
 		 * this set the listview with the content on commentList (arraylist) and
@@ -93,14 +98,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	 */
 
 	public void testB(View view) {
-		double lat = comment.getaLocation().getLatitude();
-		double lon = comment.getaLocation().getLongitude();
 		boolean isOn = internet.isConnectedToInternet();
-		String msn = "Title : " + comment.getTittle() + "\n text : "
-				+ comment.getTextComment() + "\n user : " + comment.getaUser()
-				+ "\n location : lat - " + lat + "\n lon - " + lon
-				+ "\n connected? " + isOn;
-		Toast.makeText(this, msn, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "lol", Toast.LENGTH_SHORT).show();
 	}
 	
 	/**
@@ -133,6 +132,12 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long id) {
+		
+		TopLevel topLevel = (TopLevel) commentList.get(position);
+		Intent intent= new Intent(getApplicationContext(),ShowCommentActivity.class);
+		intent.putExtra("testing", topLevel);
+		startActivity(intent);
+		
 
 	}
 

@@ -13,7 +13,7 @@ public abstract class Comments implements Parcelable{
 
 
 	protected Author aUser;
-	protected Location aLocation;
+	protected Location aLocation;//not sure if comment store userLocatin.
 	protected String textComment;
 	protected Bitmap aPicture;
 
@@ -31,7 +31,7 @@ public abstract class Comments implements Parcelable{
 	/**
 	 * @return the aUser
 	 */
-	public String getaUser() {
+	public String getUserName() {
 		return aUser.getUserName();
 	}
 

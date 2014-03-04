@@ -1,41 +1,23 @@
 package com.example.team04project.model;
 
-import java.util.List;
-
 import android.location.Location;
+import android.os.Parcelable;
 
 
 /**
  * @author Guillermo Ramirez
  * 
  */
-public abstract class User{
+public abstract class User implements Parcelable{
 
 	protected Location userLocation;
-	protected LocationModelList locationList;
-	
-	public User(Location aLocation)
-	{
-		this.userLocation=aLocation;
-		locationList = new LocationModelList();
-		locationList.addLocationToList(aLocation);
-	}
 
-	/**
-	 * @return the userLocation
-	 */
-	public Location getUserLocation() {
-		return userLocation;
-	}
-
-	public List<Location> getLocationHistory()
+	public User(Location userLocation)
 	{
-		return locationList.getList();
+		this.userLocation = userLocation;
 	}
-	
-	public void deleteLocationHistory()
+	public User()
 	{
-		locationList.clear();
+		
 	}
-
 }

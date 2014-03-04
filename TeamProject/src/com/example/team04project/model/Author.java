@@ -3,6 +3,8 @@ package com.example.team04project.model;
 import java.util.UUID;
 
 import android.location.Location;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * 
@@ -17,17 +19,20 @@ public class Author extends User{
 	private String userName;
 	private final String ID;
 
-	public Author(Location aLocation, String userName) {
-		super(aLocation);
-
-		if(userName == null)
-		{
-			userName="Anonymus";
-		}
-		this.userName = userName;
-		this.ID = generateID();
+	public Author(Location userLocation, String userName)
+	{
+		super(userLocation);
+		this.userName=userName;
+		this.ID=generateID();
 	}
 	
+	private Author (Parcel source)
+	{
+		userLocation=(Location) source.readValue(getClass().getClassLoader());
+		userName = source.readString();
+		this.ID=source.readString();
+	}
+
 	/**
 	 * 
 	 * @return A unique ID for each user.
@@ -58,5 +63,35 @@ public class Author extends User{
 	public String getID() {
 		return ID;
 	}
+
+	//testing Parceable
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		dest.writeValue(userLocation);
+		dest.writeString(userName);
+		dest.writeString(ID);
+	}
+	
+	public static final Parcelable.Creator<Author> CREATOR = new Creator<Author>() {
+		
+		@Override
+		public Author[] newArray(int size) {
+			// TODO Auto-generated method stub
+			return new Author [size];
+		}
+		
+		@Override
+		public Author createFromParcel(Parcel source) {
+			// TODO Auto-generated method stub
+			return new Author(source);
+		}
+	};
 
 }

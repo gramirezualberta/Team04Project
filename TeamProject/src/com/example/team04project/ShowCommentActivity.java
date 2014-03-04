@@ -28,9 +28,8 @@ public class ShowCommentActivity extends Activity {
 		tittle = (TextView) findViewById(R.id.tittle);
 		
 		Intent intent = this.getIntent();
-		Bundle bundle = intent.getExtras();
-		comment = (TopLevel) bundle.getSerializable(MainActivity.SEND_DATA);
-		tittle.setText(comment.getTittle());
+		comment = intent.getParcelableExtra("testing");
+		tittle.setText(comment.getUserName());
 	}
 
 	/**
