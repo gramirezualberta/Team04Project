@@ -3,7 +3,6 @@ package com.example.team04project.model;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 import android.util.Log;
 
 
@@ -11,8 +10,8 @@ public class Reply extends Comments
 {
 
 	public Reply(String textComment, Author aUser,
-			Bitmap aPicture) {
-		super(textComment, aUser, aPicture);
+			Bitmap aPicture, String timeStamp) {
+		super(textComment, aUser, aPicture, timeStamp);
 	}
 	
 	private Reply(Parcel source) {
@@ -21,6 +20,7 @@ public class Reply extends Comments
 		textComment = source.readString();
 		aUser = (Author) source.readValue(getClass().getClassLoader());
 		aPicture = (Bitmap) source.readValue(getClass().getClassLoader());
+		timeStamp = source.readString();
 	}
 
 	@Override
@@ -34,7 +34,8 @@ public class Reply extends Comments
 		Log.e("parceable", "" + flags);
 		dest.writeString(textComment);
 		dest.writeValue(aUser);
-		dest.writeValue(aPicture);      
+		dest.writeValue(aPicture); 
+		dest.writeString(timeStamp);
 		
 	}
 	public static final Parcelable.Creator<Reply> CREATOR = new Creator<Reply>() {

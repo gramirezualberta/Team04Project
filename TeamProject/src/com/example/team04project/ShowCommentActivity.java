@@ -29,7 +29,7 @@ public class ShowCommentActivity extends Activity {
 		
 		Intent intent = this.getIntent();
 		comment = intent.getParcelableExtra("testing");
-		tittle.setText(comment.getUserName());
+		tittle.setText(comment.toString());
 	}
 
 	/**

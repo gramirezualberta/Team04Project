@@ -1,7 +1,6 @@
 package com.example.team04project.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;
@@ -10,15 +9,19 @@ import android.util.Log;
 
 public class TopLevel extends Comments {
 
-	private String tittle;
-	@SuppressWarnings("unused")
-	private List<Reply> replyList;
+	private final String ID = UUID.randomUUID().toString();
 
 	public TopLevel(String textComment, Author aUser, Bitmap aPicture,
-			String tittle) {
-		super(textComment, aUser, aPicture);
-		this.tittle = tittle;
-		replyList = new ArrayList<Reply>();
+			String timeStamp) {
+		super(textComment, aUser, aPicture, timeStamp);
+	}
+
+	public TopLevel() {
+		super();
+		this.aPicture=null;
+		this.textComment=null;
+		this.aUser=null;
+		this.timeStamp=null;
 	}
 
 	private TopLevel(Parcel source) {
@@ -27,35 +30,25 @@ public class TopLevel extends Comments {
 		textComment = source.readString();
 		aUser = (Author) source.readValue(getClass().getClassLoader());
 		aPicture = (Bitmap) source.readValue(getClass().getClassLoader());
-		tittle = source.readString();
+		timeStamp = source.readString();
 	}
 
-	/**
-	 * @return the tittle
-	 */
-	public String getTittle() {
-		return tittle;
-	}
-
-	/**
-	 * @param tittle
-	 *            the tittle to set
-	 */
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
-	}	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return getTittle() +
-				"\n" + getTextComment() +
-				"\n" + getUserName();
+		return "\n " + getTextComment() + "\n ------------------------------- "
+				+ "\n " + getUserName() + " Date " + getDate();
 	}
 
-	//testing parceable interface. hopelly it works.
+	public String getID() {
+		return ID;
+	}
+
+	// testing parceable interface. hopelly it works.
 	@Override
 	public int describeContents() {
 		// TODO Auto-generated method stub
@@ -64,11 +57,11 @@ public class TopLevel extends Comments {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		Log.e("parceable", "" + flags);
+		Log.e("parceable", "TopLevel" + flags);
 		dest.writeString(textComment);
 		dest.writeValue(aUser);
 		dest.writeValue(aPicture);
-		dest.writeString(tittle);
+		dest.writeString(timeStamp);
 	}
 
 	public static final Parcelable.Creator<TopLevel> CREATOR = new Creator<TopLevel>() {
@@ -76,7 +69,7 @@ public class TopLevel extends Comments {
 		@Override
 		public TopLevel[] newArray(int size) {
 			// TODO Auto-generated method stub
-			return new TopLevel [size];
+			return new TopLevel[size];
 		}
 
 		@Override

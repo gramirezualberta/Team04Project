@@ -18,12 +18,16 @@ public class Author extends User{
 
 	private String userName;
 	private final String ID;
+	
+	public Author() {
+		this.ID=generateID();
+	}
 
 	public Author(Location userLocation, String userName)
 	{
 		super(userLocation);
 		this.userName=userName;
-		this.ID=generateID();
+		this.ID=getID();
 	}
 	
 	private Author (Parcel source)

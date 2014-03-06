@@ -1,14 +1,30 @@
 package com.example.team04project;
 
-import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.team04project.model.Author;
+import com.example.team04project.model.Dates;
+import com.example.team04project.model.TopLevel;
 
 public class CreateCommentActivity extends Activity {
+	
+	TopLevel topLevel;
+	Author author;
+	String textComment;
+	
+	EditText text;
+	Button postButton;
+	Button pictuButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +32,29 @@ public class CreateCommentActivity extends Activity {
 		setContentView(R.layout.activity_create_comment);
 		// Show the Up button in the action bar.
 		setupActionBar();
+	
+		postButton = (Button) findViewById(R.id.postButton);
+		text = (EditText) findViewById(R.id.textComment);
+		
+		Intent intent = getIntent();
+		author = intent.getParcelableExtra(MainActivity.CREATE_NEW_COMMENT);
+		
+		
+		
+	}
+	
+	public void postComment(View view)
+	{
+		Dates date = new Dates();
+		
+		String dates = date.getDate();
+		textComment=text.getText().toString();
+		topLevel = new TopLevel(textComment, author, null, dates);
+		
+		Intent data = new Intent();
+		data.putExtra(MainActivity.CREATE_NEW_COMMENT, topLevel);
+		setResult(MainActivity.SUCCESS_CREATE_COMMENT, data);
+		finish();
 	}
 
 	/**
@@ -51,5 +90,6 @@ public class CreateCommentActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
 
 }

@@ -1,7 +1,6 @@
 package com.example.team04project.model;
 
 import android.graphics.Bitmap;
-import android.location.Location;
 import android.os.Parcelable;
 
 /**
@@ -13,15 +12,16 @@ public abstract class Comments implements Parcelable{
 
 
 	protected Author aUser;
-	protected Location aLocation;//not sure if comment store userLocatin.
 	protected String textComment;
 	protected Bitmap aPicture;
+	protected String timeStamp;
 
-	public Comments(String textComment, Author aUser, Bitmap aPicture) {
+	public Comments(String textComment, Author aUser, Bitmap aPicture,String timeStamp) {
 
 		this.textComment = textComment;
 		this.aUser=aUser;
 		this.aPicture=aPicture;
+		this.timeStamp=timeStamp;
 	}
 	public Comments()
 	{
@@ -33,20 +33,6 @@ public abstract class Comments implements Parcelable{
 	 */
 	public String getUserName() {
 		return aUser.getUserName();
-	}
-
-	/**
-	 * @return the aLocation
-	 */
-	public Location getaLocation() {
-		return aLocation;
-	}
-
-	/**
-	 * @param aLocation the aLocation to set
-	 */
-	public void setaLocation(Location aLocation) {
-		this.aLocation=aLocation;
 	}
 
 	/**
@@ -80,5 +66,15 @@ public abstract class Comments implements Parcelable{
 	public void setUsername(String username) {
 		this.aUser.setUserName(username);
 	}	
+	
+	public void setTimeStamp (String timeStamp)
+	{
+		this.timeStamp=timeStamp;
+	}
+	
+	public String getDate()
+	{
+		return timeStamp;
+	}
 
 }

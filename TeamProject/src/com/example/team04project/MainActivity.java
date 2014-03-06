@@ -16,24 +16,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.team04project.model.Author;
-import com.example.team04project.model.Comments;
-import com.example.team04project.model.Reader;
 import com.example.team04project.model.TopLevel;
 
 public class MainActivity extends Activity implements OnItemClickListener {
 
-	public static final String SEND_DATA = "send";
-	public static final int REQUEST_DATA = 1;
+	public static final String CREATE_NEW_COMMENT = "new comment";
+	public static final int SUCCESS_CREATE_COMMENT = 1;
 
 	// essential variables for start the APP
 	GPSLocation userLocation;
-	Author author;
-	Reader reader;
-	TopLevel comment;
 	Internet internet;
+	Author author;
 
 	// data that is store to late be display in the Listview.
-	ArrayList<Comments> commentList;
+	ArrayList<TopLevel> commentList;
 
 	// Views in shown in the app
 	ListView commentListView;
@@ -43,27 +39,23 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		internet = new Internet(this);
-		// this look for the location of the user
 		userLocation = new GPSLocation(MainActivity.this);
-
-		commentList = new ArrayList<Comments>();
-		commentListView = (ListView) findViewById(R.id.commentListView);
+		author = new Author(userLocation.getLocation(), "Guillermo");
 		
-		//testing parceaable
-		author = new Author(userLocation.getLocation(), "guillermo");
-		comment = new TopLevel("haola", author, null, "tittle");
-		commentList.add(comment);
-
-		/*
-		 * this set the listview with the content on commentList (arraylist) and
-		 * set every element clickable to get more datials .
-		 */
-		commentListView.setAdapter(new ArrayAdapter<Comments>(this,
+		commentList= new ArrayList<TopLevel>();
+		userLocation = new GPSLocation(MainActivity.this);
+		
+		commentListView = (ListView) findViewById(R.id.commentListView);
+		commentListView.setAdapter(new ArrayAdapter(this,
 				android.R.layout.simple_list_item_1, commentList));
 
 		commentListView.setOnItemClickListener(this);
+
+	}
+
+	protected void onResume() {
+		super.onResume();
 
 	}
 
@@ -91,17 +83,16 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		}
 
 	}
-	
+
 	/**
 	 * testing data it should be remote before realease.
+	 * 
 	 * @param view
 	 */
 
 	public void testB(View view) {
-		boolean isOn = internet.isConnectedToInternet();
-		Toast.makeText(this, "lol", Toast.LENGTH_SHORT).show();
 	}
-	
+
 	/**
 	 * Start a new activity that create a new TopLevel Comment.
 	 * 
@@ -110,7 +101,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public void creatNewComment() {
 		Intent intent = new Intent(MainActivity.this,
 				CreateCommentActivity.class);
-		startActivity(intent);
+		intent.putExtra(CREATE_NEW_COMMENT, author);
+		startActivityForResult(intent, SUCCESS_CREATE_COMMENT);
 
 	}
 
@@ -124,20 +116,43 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	}
 
 	/**
-	 * this handle click on the listView and start a new activity that show more 
-	 * details about that top level comment, that is it starts a new activity that 
-	 * shows the tittle, username, date and location, and all the replies in the top level
-	 * comment.
+	 * this handle click on the listView and start a new activity that show more
+	 * details about that top level comment, that is it starts a new activity
+	 * that shows the tittle, username, date and location, and all the replies
+	 * in the top level comment.
 	 */
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long id) {
 		
-		TopLevel topLevel = (TopLevel) commentList.get(position);
+		TopLevel topLevel = commentList.get(position);
 		Intent intent= new Intent(getApplicationContext(),ShowCommentActivity.class);
 		intent.putExtra("testing", topLevel);
 		startActivity(intent);
-		
+
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		switch (resultCode) {
+		case SUCCESS_CREATE_COMMENT:
+			TopLevel topLevel = (TopLevel) data
+					.getParcelableExtra(CREATE_NEW_COMMENT);
+			commentList.add(topLevel);
+			Toast.makeText(this,
+					topLevel.getUserName() + "has added a new comment!",
+					Toast.LENGTH_SHORT).show();
+			commentListView.invalidateViews();
+
+			break;
+
+		default:
+
+			Toast.makeText(this, "someting were wrong", Toast.LENGTH_SHORT)
+					.show();
+			break;
+		}
 
 	}
 
